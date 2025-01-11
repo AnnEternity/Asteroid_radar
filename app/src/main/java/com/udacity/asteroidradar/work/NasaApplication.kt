@@ -62,6 +62,8 @@ class NasaApplication : Application() {
             ExistingPeriodicWorkPolicy.KEEP,
             pictureOfTheDayRepeatingRequest)
 
+
+        //I added oneTimeRequest because periodic work doesn't start immediately when app is launching
         val pictureOneTimeWorkRequest = OneTimeWorkRequestBuilder<RefreshAsteroidListWorker>().build()
 
         WorkManager.getInstance().enqueueUniqueWork(
