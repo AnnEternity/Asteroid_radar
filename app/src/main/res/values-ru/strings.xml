@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Астероид радар</string>
     <string name="next_week_asteroids">Просмотр астероидов недели</string>
-    <string name="today_asteroids">просмотр астероидов сегодня</string>
+    <string name="today_asteroids">Просмотр астероидов сегодня</string>
     <string name="saved_asteroids">Просмотр сохраненных астероидов</string>
     <string name="close_approach_data_title">Дата приближения</string>
     <string name="absolute_magnitude_title">Фбсолютная магнитуда</string>

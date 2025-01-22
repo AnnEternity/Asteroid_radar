@@ -6,6 +6,7 @@ import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.PictureOfDay
 import com.udacity.asteroidradar.api.AsteroidApi
 import com.udacity.asteroidradar.api.parseAsteroidsJsonResult
+import com.udacity.asteroidradar.database.AsteroidData
 import com.udacity.asteroidradar.database.AsteroidDataBase
 import com.udacity.asteroidradar.database.asDatabaseModel
 import com.udacity.asteroidradar.database.asDomainModel
@@ -20,6 +21,20 @@ class NasaRepository(private val database: AsteroidDataBase) {
 
     val asteroids: LiveData<List<Asteroid>> =
         database.AsteroidDatabaseDao.getAll(
+            DateTimeFormatter.ofPattern("yyyy-MM-dd").format(ZonedDateTime.now())
+        ).map {
+            it.asDomainModel()
+        }
+
+    val weekAsteroid: LiveData<List<Asteroid>> =
+        database.AsteroidDatabaseDao.getWeekAsteroids(
+            DateTimeFormatter.ofPattern("yyyy-MM-dd").format(ZonedDateTime.now())
+        ).map {
+            it.asDomainModel()
+        }
+
+    val todayAsteroid: LiveData<List<Asteroid>> =
+        database.AsteroidDatabaseDao.getTodayAsteroids(
             DateTimeFormatter.ofPattern("yyyy-MM-dd").format(ZonedDateTime.now())
         ).map {
             it.asDomainModel()

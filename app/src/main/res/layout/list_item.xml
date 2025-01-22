@@ -15,8 +15,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
-        app:cardCornerRadius="0dp"
         app:cardBackgroundColor="@color/app_background"
+        app:cardCornerRadius="0dp"
         app:cardElevation="5dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -58,10 +58,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:textColor="@color/default_text_color"
                 android:text="@{asteroid.closeApproachDate}"
                 android:textAlignment="viewStart"
                 android:textAllCaps="false"
+                android:textColor="@color/default_text_color"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/status_icon"
@@ -71,13 +71,15 @@
 
             <ImageView
                 android:id="@+id/status_icon"
+                asteroidImageContentDescription="@{asteroid.potentiallyHazardous}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toEndOf="@id/date"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/right_well"
+                app:layout_constraintStart_toEndOf="@id/date"
                 app:layout_constraintTop_toTopOf="parent"
                 app:statusIcon="@{asteroid.potentiallyHazardous}"
+                tools:ignore="ContentDescription"
                 tools:src="@drawable/ic_status_potentially_hazardous" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

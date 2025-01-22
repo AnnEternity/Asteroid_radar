@@ -12,10 +12,13 @@ import com.squareup.picasso.Picasso
 import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.database.AsteroidData
+import com.udacity.asteroidradar.database.AsteroidDataBase
 import com.udacity.asteroidradar.databinding.FragmentDetailBinding
 import com.udacity.asteroidradar.databinding.FragmentMainBinding
+import com.udacity.asteroidradar.repository.NasaRepository
 
 class MainFragment : Fragment() {
+
 
     lateinit var binding: FragmentMainBinding
 
@@ -28,6 +31,10 @@ class MainFragment : Fragment() {
 
     private val adapter = MainAdapter({ viewModel.asteroidOnClick(it) })
 
+    private val observer: Observer<List<Asteroid>> = Observer {
+        adapter.updateListAsteroidCurrent(it)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -39,6 +46,7 @@ class MainFragment : Fragment() {
         binding.asteroidRecycler.layoutManager = LinearLayoutManager(requireContext())
         binding.viewModel = viewModel
 
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -62,4 +70,31 @@ class MainFragment : Fragment() {
         }
 
     }
+
+    @Deprecated("Deprecated in Java")
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.main_overflow_menu, menu)
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.show_week_asteroids -> {
+                viewModel.asteroidFilterOnClick(AsteroidFilter.WEEK)
+                true
+            }
+            R.id.show_today_asteroids -> {
+               viewModel.asteroidFilterOnClick(AsteroidFilter.TODAY)
+                true
+                }
+            R.id.show_all_saved_asteroids -> {
+                viewModel.asteroidFilterOnClick(AsteroidFilter.ALL)
+            true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+
 }

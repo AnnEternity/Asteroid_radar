@@ -13,6 +13,10 @@ class MainAdapter(private val onClick: (Asteroid) -> Unit) :
 
     private var listAsteroidCurrent = emptyList<Asteroid>()
 
+    private var listAsteroidToday = emptyList<Asteroid>()
+    private var listAsteroidWeek = emptyList<Asteroid>()
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ListItemBinding.inflate(inflater, parent,false)
@@ -33,4 +37,6 @@ class MainAdapter(private val onClick: (Asteroid) -> Unit) :
         listAsteroidCurrent = newList
         notifyDataSetChanged()
     }
+
+
 }
