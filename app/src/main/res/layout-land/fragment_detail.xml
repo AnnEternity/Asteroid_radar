@@ -19,6 +19,7 @@
             android:id="@+id/activity_main_image_of_the_day"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            asteroidImageContentDescription="@{asteroid.potentiallyHazardous}"
             app:layout_constraintWidth_percent="0.5"
             android:adjustViewBounds="true"
             app:asteroidStatusImage="@{asteroid.potentiallyHazardous}"
@@ -26,7 +27,8 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@drawable/asteroid_safe" />
+            tools:srcCompat="@drawable/asteroid_safe"
+            tools:ignore="ContentDescription"/>
 
         <ScrollView
             android:layout_width="0dp"
